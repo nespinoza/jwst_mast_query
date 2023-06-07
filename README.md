@@ -1,5 +1,7 @@
 # jwst_mast_query
 
+I love avocados!
+
 This repository contains software for querying MAST for JWST observations and products, displaying the results in ascii tables, summarizing the files in a local html file, and downloading the selected products to a local directory.
 
 `jwst_mast_query` uses the MAST API to query MAST. It first queries over the input time frame and retrieves all of the matching "observations". In this case the script uses a definition of "observation" that matches that in APT. An observation can be composed of one or more exposures, from one or more detectors of a single instrument. For each observation, the script identifies all of the individual "products" or files, to download. There can be many products for a given observation, including science data files in various stages of calibration, guide star observations, jpg files of the observations, etc. This means if the user asks for too many observations, the number of products can be so large that the MAST query times out. For example: The pre-launch LRE5 rehearsal has 264 NIRCam observations, which have in turn >17,000 products! About 12,000 of these are guide star products, about 5,000 are science observation products, and 500 are raw, uncalibrated science exposures. `jwst_mast_query` is able to download all NIRCam LRE5 products, but times out when downloading NIRSpec LRE5 products, as NIRSpec had more observations during the rehearsal. The easiest way to avoid time-outs is to remove unwanted products when defining the query.
